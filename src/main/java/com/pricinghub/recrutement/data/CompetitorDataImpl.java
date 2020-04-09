@@ -50,44 +50,22 @@ public class CompetitorDataImpl implements CompetitorData {
         return new ArrayList<>(names);
     }
 
-    public Competitor findByName(String name) {
-        for (Competitor c: competitors)
-            if (c.getName().equals(name))
-                return c;
-
-        return null;
-    }
-
-    public List<Competitor> findByName(List<String> names) {
-        List<Competitor> compets = new ArrayList();
-        for (String name: names) {
-            System.out.println("on cherche ce name: " + name);
-            for (Competitor c : competitors) {
-                if (c.getName().equals(name)) {
-                    compets.add(c);
-                    break;
-                }
-            }
-        }
-
-        return compets;
-    }
-
     public List<Competitor> findByNameAndDates(List<String> names, String startDate, String endDate) {
 
         List<Competitor> compets = new ArrayList<>();
         try {
             Date start = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
             Date end = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+
             for (String name: names)
                 for (Competitor c: competitors)
                     if (c.getName().equals(name) && c.getDay().compareTo(start) >= 0  && c.getDay().compareTo(end) <= 0)
                         compets.add(c);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
         finally {
-            System.out.println("taille du truc: " + compets.size());
             return compets;
         }
     }
@@ -97,6 +75,7 @@ public class CompetitorDataImpl implements CompetitorData {
     }
 
     public List<Competitor> addRenderedCompetitors(List<String> names, String startDate, String endDate) {
+        clearRenderedCompetitors();
         renderedCompetitors = findByNameAndDates(names, startDate, endDate);
         return renderedCompetitors;
     }

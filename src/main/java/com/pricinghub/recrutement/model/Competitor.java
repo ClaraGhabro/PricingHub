@@ -1,7 +1,5 @@
 package com.pricinghub.recrutement.model;
 
-import org.springframework.context.annotation.ScopeMetadata;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,9 +28,15 @@ public class Competitor {
         return price;
     }
 
-    public void setName(String name) { this.name = name;}
-    public void setDay(Date day) { this.day = day; }
-    public void setPrice(String price) { this.price = Float.parseFloat(price);}
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDay(Date day) {
+        this.day = day;
+    }
+    public void setPrice(String price) {
+        this.price = Float.parseFloat(price);
+    }
 
     @Override
     public String toString() {

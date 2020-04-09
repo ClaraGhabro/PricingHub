@@ -5,11 +5,9 @@ import com.pricinghub.recrutement.model.Competitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController("/Page")
+@RestController("/competitors")
 @Controller
 public class CompetitorController {
 
@@ -30,13 +28,13 @@ public class CompetitorController {
 
     // Recuperer les competitors selon les filtres
     @PostMapping(value = "/competitors/filtered")
-    public List<Competitor> filtrerCompetitors(@RequestParam List<String> names, @RequestParam String startDate, @RequestParam String endDate) {
+    public List<Competitor> filterCompetitors(@RequestParam List<String> names, @RequestParam String startDate, @RequestParam String endDate) {
         return competitorData.addRenderedCompetitors(names, startDate, endDate);
     }
 
     // Afficher les competitors et leur information selon certains filtres
     @GetMapping(value = "/competitors/filtered")
-    public List<Competitor> afficherFilteredCompetitor() {
+    public List<Competitor> displayFilteredCompetitor() {
         return competitorData.getRenderedCompetitors();
     }
 }
